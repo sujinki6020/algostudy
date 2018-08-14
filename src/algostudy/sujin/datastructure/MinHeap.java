@@ -1,4 +1,4 @@
-package algostudy.sujin.algorithm;
+package algostudy.sujin.datastructure;
 
 /*
  * Heap : 삽입, 삭제 연산이 일반 트리구조의 그것과는 다소 다름
