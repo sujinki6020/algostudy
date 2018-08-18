@@ -1,4 +1,4 @@
-package algostudy.eunbee;
+package algostudy.eunbee.datastructure;
 /*퀵정렬
  * 
  * */

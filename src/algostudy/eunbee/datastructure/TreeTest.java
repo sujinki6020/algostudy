@@ -1,4 +1,4 @@
-package algostudy.eunbee;
+package algostudy.eunbee.datastructure;
 /**
  * 이진트리의 종류
  * 		 (1)

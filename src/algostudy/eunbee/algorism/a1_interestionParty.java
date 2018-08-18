@@ -1,4 +1,4 @@
-package algostudy.eunbee;
+package algostudy.eunbee.algorism;
 
 import java.util.HashMap;
 
@@ -14,7 +14,7 @@ public class a1_interestionParty {
 //		}
 //		return count+1;
 		
-		/*방법1)
+		/*방법1)*/
 		int i, j;
 		int ans =0;
 		for(i = 0; i< first.length; i++) {
@@ -30,12 +30,12 @@ public class a1_interestionParty {
 			ans = Math.max(s, ans);
 		}
 		return ans;
-		*/
 		
-		HashMap<String, Integer> dic = new HashMap<String, Integer>();
-		for(int i = 0; i < first.length; i++) {
-			dic.put(first[i], 0);
-		}
+		
+//		HashMap<String, Integer> dic = new HashMap<String, Integer>();
+//		for(int i = 0; i < first.length; i++) {
+//			dic.put(first[i], 0);
+//		}
 		
 	}
 	public static void main(String[] args) {

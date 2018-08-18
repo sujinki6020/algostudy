@@ -1,4 +1,4 @@
-package algostudy.eunbee;
+package algostudy.eunbee.algorism;
 
 
 public class a0_kiwiJuice {
