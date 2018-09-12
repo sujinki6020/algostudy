@@ -6,6 +6,8 @@
 
 package algostudy.junga;
 
+import java.util.List;
+
 public class LinkedList {
 	
 	// 누가 첫번째인지 정보를 담는 head라는 변수를 담는다.
@@ -40,6 +42,86 @@ public class LinkedList {
 			tail = head;
 		}
 	}
+	public void addLast(Object input) {
+		Node newNode = new Node(input);
+		if(size == 0) // 데이터가 없는상태라면 앞뒤 어디에나 데이터를 넣어도 상관없다.
+		{ addFirst(input);}
+		else {
+			tail.next = newNode;// 새로운 노드로 지정
+			tail = newNode;
+			size++;
+		}
+	}
 	
-
+	// 내부적으로 사용하는 api구현
+	// 내부라 public이 아니지만 테스트를 위해서 지정
+	// 그림 참고
+	public Node node(int index) {
+		Node x = head; 
+		for(int i=0; i < index; i++) {
+			x = x.next;			
+		}
+		return x;
+		
+	}
+	// 사이에 넣기 k는 인덱스 
+	public void add(int k,Object input) {
+		if(k==0) {
+			addFirst(input);
+		}else {
+			// 인덱스가 먼지 알아내는 메서드
+			Node temp = node(k-1); // x는 헤드
+			Node temp2 = temp.next;
+			Node newNode = new Node(input);
+			temp.next = newNode;
+			newNode.next = temp2;
+			size++;
+			if(newNode.next == null) {
+				tail = newNode;
+			}
+			// 이해가 안갈경우 그림 참고 
+		}
+	}
+	public String toString() {
+		if(head == null) {
+			return "[]";
+		}else {
+			Node temp = head;
+			String str = "[";
+			while(temp.next != null) {
+				str += temp.data + ","; 
+				temp = temp.next;
+				
+			}
+			str += temp.data;
+			return str + "]";
+		}
+	}
+	public Object removeFirst() {
+		Node temp = head;
+		head = temp.next;
+		Object returnData = temp.data; // 임시변수 삭제전
+		temp = null;
+		return returnData;
+	}
+	// 특정한 위치에 엘리먼트를 삭제하는 방법 
+	public Object remove(int k) {
+		if(k == 0) {
+			return removeFirst();
+		}else {
+			 Node temp = node(k-1); // 이전 인덱스값 
+			 Node todoDelete = temp.next; // 삭제하려는 노드
+			 temp.next = temp.next.next;
+			 Object returnData = todoDelete.data;
+			 if(todoDelete == tail) {
+				 tail = temp; // 삭제하려는 노드 이전이다.
+			 }
+			 todoDelete = null;
+			 size--;
+			 return returnData;
+		}
+	}
+	public Object removeLast() {
+		return remove(size-1);
+	}
 }
