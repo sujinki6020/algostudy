@@ -25,8 +25,6 @@ public class BOJ_2957 {
 		//최대, 최소값 저장할 곳
 		List<Integer> maxList = new ArrayList<>();
 		List<Integer> minList = new ArrayList<>();
-		//
-		List<Integer> nodeList = new ArrayList<>();
 		//노드들이 차고있는 현황 배열
 		List<Integer> fullArr = new ArrayList<>(list.size());
 		//0으로 초기화
@@ -43,18 +41,32 @@ public class BOJ_2957 {
 				max = num; min = num;
 				
 				maxList.add(max);
-				minList.add(min);
-				fullArr.set(i, fullArr.get(i)+1);
+				minList.add(min); 
+				fullArr.set(i, fullArr.get(i)+1); 
 			}
 			
 			if(num > min && num < max) {
 				//꽉찬 노드 제외하고 맥스 아래부터 탐색
-				int size = maxList.size()>minList.size()? maxList.size(): minList.size();
+				int maxSize = maxList.size();
+				int minSize = minList.size();
+				int size = maxSize>minSize? maxSize: minSize; 
+				int getMax = maxList.get(maxSize-1);
+				int getMin = minList.get(minSize-1);
+				
 				for(int j =0; j < size; j++) {
-					//범위안에 들어있으면 깊이가 꽉차있는지 확인한다
-					if(num <maxList.get(j) && num<minList.get(i)) {
-						if(fullArr.get(maxList.indexOf(maxList.get(j))) == fullArr.indexOf(maxList.indexOf(maxList.get(j)))) {
-							
+					if(maxSize > j+1) {
+						getMax = maxList.get(j);
+					}
+					if(minSize > j+1) {
+						getMin = minList.get(j);
+					}
+					
+					//범위안에 들어있으면 해당 깊이가 꽉차있는지 확인한다
+					if(num <getMax && num<getMin) {
+						//빈공간 확인
+						if(fullArr.get(maxList.indexOf(getMax)) != fullArr.indexOf(maxList.indexOf(getMax))) {
+							System.out.println(maxList.indexOf(getMax));
+							fullArr.set(maxList.indexOf(getMax), maxList.indexOf(getMax)+1);
 						}
 					}
 				}
