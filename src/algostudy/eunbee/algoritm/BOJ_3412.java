@@ -33,6 +33,7 @@ public class BOJ_3412 {
 			int y = Integer.parseInt(list.get(i).split(" ")[1]);
 			score += lengthCount(x,y);
 		}
+		System.out.println(score);
 		
 	}
 	
@@ -46,6 +47,7 @@ public class BOJ_3412 {
 			}
 			
 		}
-		return score;
+		return (score /20)-11;
 	}
+	
 }
