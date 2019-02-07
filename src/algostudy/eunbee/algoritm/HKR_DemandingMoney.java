@@ -16,26 +16,32 @@ public class HKR_DemandingMoney {
     	
     	List<List<Integer>>paths = new ArrayList<>();
     	List<Integer> passedPath = new ArrayList<>();
-    	
+    	int indexKey =1;
     	for(int key : map.keySet()) {
-    		getPath(passedPath, key, map.get(key), map);
+    		getPath(indexKey,paths, passedPath, key, map.get(key), map);
+    		indexKey++;
     	}
     	
     	return null;
 
     }
-    public static List<Integer> getPath(List<Integer> passedPath, int key, List<Integer> available, Map<Integer, List<Integer>> map) {
-//    	List<Integer> result = null;
-    	if(!available.isEmpty()) {
-    		
-    		for(int i = 0; i < available.size(); i++) { //4,5,6,7반복
-    			
-    			getPath(passedPath, key, available, map);
+    public static List<List<Integer>> getPath(int indexKey, List<List<Integer>> paths,List<Integer> passedPath, 
+    										  int key, List<Integer> available, Map<Integer, List<Integer>> map) {
+    		//map 1={4,5,6,7}
+    		passedPath.add(key);
+    		for(int value : available) { //value = 4,5,6,7
+    			available = map.get(value);
+    			if(value ==7 && available.isEmpty()) {
+//    				passedPath.add(value);
+    				paths.add(passedPath);
+    				passedPath.clear();
+    				
+    				passedPath.add(100);
+    				passedPath.add(300);
+    			}
+    				getPath(indexKey,paths,passedPath, value, available, map);
     		}
-    	}else {
-    		return passedPath;
-    	}
-		return passedPath;
+		return paths;
     }
     public static Map<Integer, List<Integer>> getMap(int count, int[][] roads){
     	
@@ -103,8 +109,8 @@ public class HKR_DemandingMoney {
 //            }
 //        }
     	
-        int[] money = {6,8,2};
-        int[][] roads = {{1,2}, {2,3}};
+        int[] money = {1,2,3,4,5,6,7};
+        int[][] roads = {{1,2}, {2,3}, {4,5}, {6,4}, {6,7}};
         
 
         int[] result = demandingMoney(money, roads);
