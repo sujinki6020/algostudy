@@ -1,10 +1,10 @@
-package algostudy.eunbee.algoritm;
+package algostudy.eunbee.algoritm.BOJ;
 
 import java.util.Scanner;
 
-public class BOJ_11719 {
-	
+public class BOJ_11718 {
 	public static void main(String[] args) {
+		
 		Scanner sc = new Scanner(System.in);
 		while(sc.hasNextLine()) {
 			String input = sc.nextLine();

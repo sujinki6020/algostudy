@@ -1,4 +1,4 @@
-package algostudy.eunbee.algoritm;
+package algostudy.eunbee.algoritm.BOJ;
 
 public class BOJ_4673 {
 	public static void main(String[] args) {

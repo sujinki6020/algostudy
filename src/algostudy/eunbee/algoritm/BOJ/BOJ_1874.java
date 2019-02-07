@@ -1,4 +1,4 @@
-package algostudy.eunbee.algoritm;
+package algostudy.eunbee.algoritm.BOJ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
