@@ -11,47 +11,57 @@ import java.util.regex.*;
 public class HKR_MinLoss {
 
     // Complete the minimumLoss function below.
-    static int minimumLoss(long[] price) {
+    static long minimumLoss(long[] price) {
+    	List<Long> oriPrice = copyArray(price);
     	
     	Arrays.sort(price);
-    	int min = 100000;
+    	
+    	long min = (long)999999999;
     	for(int i = 1; i < price.length; i++) {
-    		int interval = (int) (price[i]-price[i-1]);
-    		if(interval < min) {
-    			for(int j = 0; j < price.length; j++) {
-    				
-    			}
-    			min = interval; 
+    		long interval = price[i]-price[i-1];
+    		if(interval < min)  {
+//    			long indexRight = oriPrice.indexOf(price[i]); 
+//    			long indexLeft = oriPrice.indexOf(price[i-1]); 
+    			
+    			if( oriPrice.indexOf(price[i]) < oriPrice.indexOf(price[i-1])) min = interval; 
     		}
     	}
     	
     	return min;
     }
+    private static List<Long> copyArray(long[] prices){
+    	List<Long> oriPrice = new ArrayList<>();
+    	for(long price : prices) {
+    		oriPrice.add(price);
+    	}
+    	return oriPrice;
+    }
 
-    private static final Scanner scanner = new Scanner(System.in);
+	private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+//
+//        int n = scanner.nextInt();
+//        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+//
+//        long[] price = new long[n];
+//
+//        String[] priceItems = scanner.nextLine().split(" ");
+//        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+//
+//        for (int i = 0; i < n; i++) {
+//            long priceItem = Long.parseLong(priceItems[i]);
+//            price[i] = priceItem;
+//        }
 
-        int n = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+    	long[] price = {(long)20, (long)7, (long)8, (long)2, (long)5};
+        long result = minimumLoss(price);
 
-        long[] price = new long[n];
-
-        String[] priceItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        for (int i = 0; i < n; i++) {
-            long priceItem = Long.parseLong(priceItems[i]);
-            price[i] = priceItem;
-        }
-
-        int result = minimumLoss(price);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
+//        bufferedWriter.write(String.valueOf(result));
+//        bufferedWriter.newLine();
+//
+//        bufferedWriter.close();
 
         scanner.close();
     }
